@@ -1,0 +1,393 @@
+/* ============================================================
+   WellNest Smart Health Dashboard — Nutrition & Diet Style
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --violet:        #7c3aed;
+  --violet-mid:    #9b59f5;
+  --violet-light:  #c4b5fd;
+  --pink:          #e879f9;
+  --grad-main:     linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #e879f9 100%);
+  --grad-stat:     linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
+  --grad-btn-active: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  --white:         #ffffff;
+  --card-bg:       rgba(255, 255, 255, 0.97);
+  --card-bg-dark:  rgba(18, 8, 35, 0.92);
+  --text-dark:     #1e1b4b;
+  --text-mid:      #4c1d95;
+  --text-muted:    #6b7280;
+  --border:        rgba(196, 181, 253, 0.3);
+  --input-bg:      #f5f3ff;
+  --shadow-card:   0 8px 40px rgba(109, 40, 217, 0.12), 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-hover:  0 16px 50px rgba(109, 40, 217, 0.2);
+  --radius:        16px;
+  --radius-lg:     24px;
+  --font:          'Poppins', sans-serif;
+  --transition:    0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── App Shell ── */
+.app {
+  position: relative;
+  min-height: 100vh;
+  padding: 2.5rem 2rem 5rem;
+  font-family: var(--font);
+  overflow-x: hidden;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* ── Dark Mode ── */
+.app.dark {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #f5f3ff;
+}
+
+/* ── Particle Canvas ── */
+#tsparticles {
+  position: fixed !important;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ── Toggle Button ── */
+.toggle-btn {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.5rem;
+  z-index: 100;
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  background: var(--grad-main);
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.5);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.toggle-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 28px rgba(124, 58, 237, 0.65);
+}
+
+.toggle-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Main Title ── */
+.main-title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  text-align: center;
+  margin: 0 auto 2.5rem;
+  padding-top: 0.5rem;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.main-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--grad-main);
+  border-radius: 999px;
+  margin: 0.5rem auto 0;
+}
+
+/* ── Layout Sections ── */
+.top-section,
+.bottom-section {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto 1.5rem;
+}
+
+.bottom-section {
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .top-section {
+    flex-direction: column;
+  }
+}
+
+/* ── Cards ── */
+.card {
+  flex: 1;
+  background: var(--card-bg);
+  border: 1px solid rgba(196, 181, 253, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.app.dark .card {
+  background: var(--card-bg-dark);
+  border-color: rgba(196, 181, 253, 0.12);
+}
+
+/* ── Glow ── */
+.glow {
+  box-shadow: var(--shadow-card);
+}
+
+.glow:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* ── Mood Card ── */
+.mood-animate {
+  animation: subtlePulse 6s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+  0%, 100% { box-shadow: var(--shadow-card); }
+  50%       { box-shadow: 0 12px 45px rgba(168, 85, 247, 0.2); }
+}
+
+/* ── Headings inside cards ── */
+.card h2,
+.card h3 {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--violet);
+  margin-bottom: 1.25rem;
+}
+
+.app.dark .card h2,
+.app.dark .card h3 {
+  color: var(--violet-light);
+}
+
+/* ── Stat boxes ── */
+.stat-box,
+.card .stat {
+  background: var(--grad-stat);
+  border-radius: var(--radius);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  color: #fff;
+  flex: 1;
+}
+
+.stat-box .stat-value,
+.card .stat .value {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  display: block;
+}
+
+.stat-box .stat-label,
+.card .stat .label {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* ── Tab buttons ── */
+.tab-btn,
+.card .tab {
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.85);
+  background: transparent;
+  color: #fff;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  backdrop-filter: blur(6px);
+}
+
+.tab-btn.active,
+.tab-btn:hover,
+.card .tab.active,
+.card .tab:hover {
+  background: var(--grad-btn-active);
+  border-color: transparent;
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.45);
+  color: #fff;
+}
+
+/* ── Buttons inside cards ── */
+.card button {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.8rem;
+  background: var(--grad-main);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 3px 14px rgba(124, 58, 237, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.card button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 6px 22px rgba(124, 58, 237, 0.55);
+}
+
+.card button:active {
+  transform: scale(0.97);
+}
+
+/* ── Inputs & Selects ── */
+.card input,
+.card select,
+.card textarea {
+  font-family: var(--font);
+  font-size: 0.92rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.65rem 1rem;
+  background: var(--input-bg);
+  color: var(--text-dark);
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card input:focus,
+.card select:focus,
+.card textarea:focus {
+  outline: none;
+  border-color: var(--violet-mid);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+  background: #fff;
+}
+
+.card input::placeholder,
+.card textarea::placeholder {
+  color: #9ca3af;
+  font-weight: 300;
+}
+
+.app.dark .card input,
+.app.dark .card select,
+.app.dark .card textarea {
+  background: rgba(55, 20, 100, 0.5);
+  color: #f5f3ff;
+  border-color: rgba(196, 181, 253, 0.25);
+}
+
+.app.dark .card input::placeholder {
+  color: #a78bfa;
+}
+
+/* ── Labels ── */
+.card label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.app.dark .card label {
+  color: var(--violet-light);
+}
+
+/* ── Paragraph text ── */
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.app.dark .card p {
+  color: #c4b5fd;
+}
+
+/* ── Dividers ── */
+.card hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.25rem 0;
+}
+
+/* ── Badge / Pill ── */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #f3e8ff;
+  color: var(--violet);
+}
+
+.app.dark .badge {
+  background: rgba(124, 58, 237, 0.3);
+  color: var(--violet-light);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #a855f7, #7c3aed);
+  border-radius: 999px;
+}
+
+/* ── Focus ring ── */
+*:focus-visible {
+  outline: 2px solid var(--violet-mid);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Utility ── */
+.gradient-text {
+  background: var(--grad-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
