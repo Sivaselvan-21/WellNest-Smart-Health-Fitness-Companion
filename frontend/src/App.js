@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.css';
-
+import { DarkModeProvider } from './context/DarkModeContext';
 // Import Pages
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -30,6 +30,7 @@ function App() {
   }, []);
 
   return (
+  <DarkModeProvider>
     <Router>
       <div className="App">
         <ToastContainer position="top-right" autoClose={3000} />
@@ -46,6 +47,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+  </DarkModeProvider>
   );
 }
 
